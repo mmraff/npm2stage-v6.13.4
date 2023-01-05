@@ -1,0 +1,59 @@
+{
+  "name": "npm2stage-v6.13.4",
+  "version": "1.0.0",
+  "description": "CLI to manage npm-two-stage installation for npm 6.13.4",
+  "author": "Matthew Rafferty <mmraff@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmraff/npm2stage-v6.13.4.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mmraff/npm2stage-v6.13.4/issues"
+  },
+  "homepage": "https://github.com/mmraff/npm2stage-v6.13.4#readme",
+  "keywords": [
+    "npm",
+    "two-stage",
+    "download",
+    "install",
+    "offline",
+    "packages",
+    "package manager",
+    "air-gap"
+  ],
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "bin": {
+    "npm2stage": "./cli.js"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "commander": "^6.2.1",
+    "npm-two-stage": "github:mmraff/npm-two-stage#npm6.13.4"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^7.2.0",
+    "nyc": "^14.1.1",
+    "rimraf": "^2.7.1"
+  },
+  "scripts": {
+    "test": "mocha test/*.js",
+    "coverage": "nyc npm run test"
+  },
+  "nyc": {
+    "exclude": [
+      "lib/",
+      "test/",
+      "!lib/file-tools.js",
+      "!test/n2s_shared/lib/shared.js",
+      "!test/n2s_install/lib/install.js",
+      "!test/n2s_uninstall/lib/uninstall.js",
+      "!test/n2s_status/lib/status.js"
+    ]
+  }
+}
