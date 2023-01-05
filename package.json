@@ -28,9 +28,10 @@
   "bin": {
     "npm2stage": "./cli.js"
   },
-  "directories": {
-    "lib": "lib"
-  },
+  "files": [
+    "cli.js",
+    "lib/*.js"
+  ],
   "dependencies": {
     "commander": "^6.2.1",
     "npm-two-stage": "github:mmraff/npm-two-stage#npm6.13.4"
