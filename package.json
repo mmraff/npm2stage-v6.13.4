@@ -1,6 +1,6 @@
 {
   "name": "npm2stage-v6.13.4",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "CLI to manage npm-two-stage installation for npm 6.13.4",
   "author": "Matthew Rafferty <mmraff@gmail.com>",
   "license": "MIT",
