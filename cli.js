@@ -83,6 +83,7 @@ program
     })
     .catch(err => {
       console.error(`ERROR: ${err.message}`)
+      process.exitCode = err.exitcode || 1
     })
   })
 
