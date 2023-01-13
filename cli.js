@@ -20,19 +20,17 @@ const ADVICE_TO_UNINSTALL = [
 program
   .name(progName)
   .version(pkgVersion)
-/*
-// TODO: replace this with .addHelpText('after', `whatever ...`)
-  .usage(
-    [
-      '[options] [NPM_DIRECTORY]',
-      '',
-      'TODO: more description, like what happens when user does not give NPM_DIRECTORY.',
-    ].join('\n')
-  )
-*/
+  .usage('<command> [cmdOption] [npmPath]')
+  .on('--help', () => console.log(
+`
+  npmPath (the path to the target npm installation) is required with the
+  commands install, status, and uninstall, unless the help option is given.
+`
+  ))
 
 program
-  .command('install [npmPath]')
+  .command('install <npmPath>')
+  .description('Installs npm-two-stage over npm installation at given path.')
   .alias('i')
   .option('-s, --silent', 'No console output unless error')
   .action((npmPath, options) => {
@@ -55,7 +53,8 @@ program
   })
 
 program
-  .command('uninstall [npmPath]')
+  .command('uninstall <npmPath>')
+  .description('Removes all traces of npm-two-stage from npm installation at given path.')
   .alias('un')
   .option('-s, --silent', 'No console output unless error')
   .action((npmPath, options) => {
@@ -74,7 +73,8 @@ program
   })
 
 program
-  .command('status [npmPath]')
+  .command('status <npmPath>')
+  .description('Reports the condition of npm-two-stage artifacts at given path.')
   .action(npmPath => {
     statusProgress.on('msg', msg => console.log('  ', msg))
     console.log('')
@@ -87,4 +87,5 @@ program
     })
   })
 
-program.parse()
+try { program.parse() }
+catch(err) { program.help() }
