@@ -1,0 +1,11 @@
+{
+  "exclude": [
+    "lib/",
+    "test/",
+    "!lib/file-tools.js",
+    "!test/n2s_shared/lib/shared.js",
+    "!test/n2s_install/lib/install.js",
+    "!test/n2s_uninstall/lib/uninstall.js",
+    "!test/n2s_status/lib/status.js"
+  ]
+}
