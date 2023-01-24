@@ -594,17 +594,18 @@ describe('command line script', function() {
 })
 /*
   NOTES
-  * Some of the uncovered lines of cli.js are the ones where process.exitCode
-    gets set to 1 in the absence of an error exitcode; the others are where
-    option --silent is handled <--- ADD TESTS FOR THIS!
   * The last 2 uncovered lines for uninstall.js have to do with the case of
     no path given, which means operate on the global npm.
-    Can't get coverage of these unless we set the prefix in the call to runCLI;
-    but then there would have to be a fully functional npm there!
+    Can't get coverage of these unless we have a full alternate npm installation,
+    and then set the prefix in the call to runCLI, so we can avoid mucking
+    with the actual global npm.
+  * Similar problem for some outstanding uncovered lines in other files,
+    plus handling of file system errors that are virtually irreproducible.
+    However, we have 100% coverage by unit tests, so...
 */
 /*
   TODO:
-  * How to get the npmrc for this to exclude lib/file-tools required by test/lib/tools.js?
   * Try `useSpawnWrap: true` in the config?
     [https://stackoverflow.com/questions/50459872/no-coverage-nyc-mocha]
+    [https://github.com/istanbuljs/spawn-wrap]
 */

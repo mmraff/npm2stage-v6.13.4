@@ -320,7 +320,7 @@ describe('`install` module', function() {
     })
 
     it ('should reject if npm-two-stage is already installed at the target', function(done) {
-      // TODO: This is going to be redundant for the unit test, but good to keep in the integration test.
+      // NOTE: Redundant for the unit test, but good idea in the integration test.
       n2sInstaller.install(assets.npmDir)
       .then(() => done(getDidNotReject()))
       .catch(err => {

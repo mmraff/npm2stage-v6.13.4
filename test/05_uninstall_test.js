@@ -27,9 +27,7 @@ const assets = {
   get emptyDir () { return path.join(this.root, 'EMPTY_DIR') },
   get wrongDir () { return path.join(this.root, 'not-npm') },
   get npmDir () { return path.join(this.root, 'npm') },
-  get installDest () { return path.join(this.root, 'npm/lib') }//,
-  // TODO: remove when this proven unnecessary:
-  //get n2sMockSrcPath () { return path.join(this.root, 'src') }
+  get installDest () { return path.join(this.root, 'npm/lib') }
 }
 
 const mock = {}
@@ -65,8 +63,6 @@ describe('`uninstall` module', function() {
     const uninstallerPath = path.join(mockN2sLibPath, 'uninstall.js')
 
     rimrafAsync(assets.root).then(() => mkdirAsync(assets.root))
-    // TODO: remove when this proven unnecessary:
-    //.then(() => graft(realSrcDir, assets.root))
     .then(() => graft(fixtureLibPath, assets.root))
     .then(() => copyFileAsync(
       path.join(__dirname, '../lib/uninstall.js'),
