@@ -43,18 +43,11 @@
     "rimraf": "^2.7.1"
   },
   "scripts": {
-    "test": "mocha test/*.js",
-    "coverage": "nyc npm run test"
-  },
-  "nyc": {
-    "exclude": [
-      "lib/",
-      "test/",
-      "!lib/file-tools.js",
-      "!test/n2s_shared/lib/shared.js",
-      "!test/n2s_install/lib/install.js",
-      "!test/n2s_uninstall/lib/uninstall.js",
-      "!test/n2s_status/lib/status.js"
-    ]
+    "test:unit": "mocha test/*.js",
+    "test:integr8n": "mocha --slow 1000 test/cli/*.js",
+    "test": "npm run test:unit && npm run test:integr8n",
+    "cover:unit": "nyc --nycrc-path=nycrc-unit npm run test:unit",
+    "cover:integr8n": "nyc --nycrc-path=nycrc-integr8n npm run test:integr8n",
+    "coverage": "npm run cover:unit && npm run cover:integr8n"
   }
 }
