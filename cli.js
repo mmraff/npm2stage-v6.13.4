@@ -48,6 +48,7 @@ program
         if (err.exitcode == ERRS.LEFTOVERS)
           console.warn(ADVICE_TO_UNINSTALL)
       }
+      /*istanbul ignore next*/
       process.exitCode = err.exitcode || 1
     })
   })
@@ -68,6 +69,7 @@ program
     })
     .catch(err => {
       console.error(`ERROR: ${err.message}`)
+      /*istanbul ignore next*/
       process.exitCode = err.exitcode || 1
     })
   })
@@ -83,9 +85,9 @@ program
     })
     .catch(err => {
       console.error(`ERROR: ${err.message}`)
+      /*istanbul ignore next*/
       process.exitCode = err.exitcode || 1
     })
   })
 
-try { program.parse() }
-catch(err) { program.help() }
+program.parse()
