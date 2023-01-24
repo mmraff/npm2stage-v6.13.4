@@ -351,7 +351,7 @@ describe('command line script', function() {
       const brokenNpmDir = path.join(assets.scratchDir, 'npm')
       const expectedErrMsg = 'ENOENT: no such file or directory, rename '
       return rimrafAsync(brokenNpmDir)
-      .then(() => testTools.copyFreshMockNpmDir(assets.scratchDir)
+      .then(() => testTools.copyFreshMockNpmDir(assets.scratchDir))
       .then(() => unlinkAsync(path.join(brokenNpmDir, 'lib/install.js')))
       .then(() => runCLI([ 'install', brokenNpmDir ]))
       .then(() => { throw getDidNotReject() })
