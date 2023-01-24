@@ -182,7 +182,7 @@ describe('`status` module', function() {
       statusMod.getStatus().then(() => { throw getDidNotReject() })
       .catch(err => {
         mock.shared.setErrorState('expectCorrectNpmVersion', false)
-        expectStandardMessages(messages, 2, [null, 'failure'])
+        expectStandardMessages(messages, 1)
         done()
       })
       .catch(err => done(err))

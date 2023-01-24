@@ -16,7 +16,7 @@ function dummyMaybeThrow(fnName) {
   return Promise.resolve()
 }
 
-module.exports.emitter = new Emitter()
+const em = module.exports.emitter = new Emitter()
 
 module.exports.expectCorrectNpmVersion =
   () => dummyMaybeThrow('expectCorrectNpmVersion')
@@ -26,6 +26,8 @@ module.exports.removeAddedItems =
 
 module.exports.restoreBackups =
   () => dummyMaybeThrow('restoreBackups')
+
+module.exports.addFaultMessage = (err) => {}
 
 module.exports.setErrorState = (fnName, state, errCode, exitcode) => {
   if (!cfg[fnName])

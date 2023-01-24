@@ -352,4 +352,51 @@ describe('`shared` module', function() {
       })
     }
   })
+
+  describe('`addFaultMessage` function', function() {
+    const messages = []
+
+    before('setup for all `addFaultMessage` tests', function() {
+      shared.emitter.on('msg', (msg) => messages.push(msg))
+    })
+
+    afterEach('per-item teardown', function() {
+      messages.splice(0, messages.length)
+    })
+
+    after('teardown after all `addFaultMessage` tests', function() {
+      shared.emitter.removeAllListeners()
+    })
+
+    it('should add `Wrong version` message to emitter if given error with exitcode WRONG_NPM_VER', function() {
+      const err = new Error('TEST of case: wrong version')
+      err.exitcode = ERRS.WRONG_NPM_VER
+      shared.addFaultMessage(err)
+      expect(messages).to.have.lengthOf(1)
+      expect(messages[0]).to.equal('Wrong version of npm for this version of npm-two-stage.')
+    })
+
+    it('should add `npm not found` message to emitter if given error with exitcode NO_NPM', function() {
+      const err = new Error('TEST of case: npm not found')
+      err.exitcode = ERRS.NO_NPM
+      shared.addFaultMessage(err)
+      expect(messages).to.have.lengthOf(1)
+      expect(messages[0]).to.equal('npm not found at given location.')
+    })
+
+    it('should add the error message verbatim to emitter if it has exitcode BAD_NPM_INST', function() {
+      const err = new Error('TEST of case: something wrong with npm at target')
+      err.exitcode = ERRS.BAD_NPM_INST
+      shared.addFaultMessage(err)
+      expect(messages).to.have.lengthOf(1)
+      expect(messages[0]).to.equal(err.message)
+    })
+
+    it('should not add anything to emitter if other than previous 3 cases', function() {
+      const err = new Error('TEST of case: some other exitcode')
+      err.exitcode = 1
+      shared.addFaultMessage(err)
+      expect(messages).to.be.empty
+    })
+  })
 })
